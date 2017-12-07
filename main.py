@@ -51,10 +51,10 @@ class BlamDemo(ShowBase):
         plNP.setPos(0, 0, 0)
         render.setLight(plNP)
         # make shadows less black
-        #al = AmbientLight('al')
-        #al.setColor((0.2, 0.2, 0.2, 1))
-        #alNP = render.attachNewNode(al)
-        #render.setLight(alNP)
+        al = AmbientLight('al')
+        al.setColor((0.1, 0.1, 0.1, 1))
+        alNP = render.attachNewNode(al)
+        render.setLight(alNP)
         positions = [[[0, 0, 3], [0, 0, -1]],
                      [[0, -3, 0], [0, 1, 0]],
                      [[-3, 0, 0], [1, 0, 0]]
