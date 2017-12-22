@@ -3,10 +3,11 @@ from direct.task.TaskManagerGlobal import taskMgr
 from panda3d.core import (AmbientLight, PointLight, Spotlight, 
                           AntialiasAttrib, KeyboardButton, TransparencyAttrib)
 from math import sqrt
-from toon.input.lsl_wrapper import LslDevice
-from toon.input.hand import Hand
+from toon.input import MultiprocessInput as MpI
+from toon.input import Hand
 import numpy as np
 
+#TODO: I don't have a clue how render, loader, and globalClock make their way into the environment...
 class BlamDemo(ShowBase):
     
     def __init__(self, dev):
@@ -85,8 +86,8 @@ class BlamDemo(ShowBase):
         if dt > 0.018:
             print(dt)
 
-        dat, ts = self.dev.read()
-        if dat:
+        ts, dat = self.dev.read()
+        if ts is not None:
             if self.zeroing is None:
                 self.zeroing = np.median(dat, axis=0)
             dat = np.array(dat) - self.zeroing
@@ -94,6 +95,6 @@ class BlamDemo(ShowBase):
         return task.cont
 
 if __name__ == '__main__':
-    demo = BlamDemo(LslDevice(Hand, nonblocking=False))
+    demo = BlamDemo(MpI(Hand))
     with demo.dev:
         demo.run()
