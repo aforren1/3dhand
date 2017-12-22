@@ -91,7 +91,7 @@ class BlamDemo(ShowBase):
             if self.zeroing is None:
                 self.zeroing = np.median(dat, axis=0)
             dat = np.array(dat) - self.zeroing
-            self.cube.setPos(-dat[-1, 9] * 2, dat[-1, 10] * 2, -dat[-1, 11] * 2)
+            self.cube.setPos(-dat[-1, 9] * 2, dat[-1, 10] * 2, -dat[-1, 11] * 4)
         return task.cont
 
 if __name__ == '__main__':
